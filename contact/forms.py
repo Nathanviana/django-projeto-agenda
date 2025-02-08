@@ -5,21 +5,14 @@ from contact.models import Contact
 
 
 class ContactForm(forms.ModelForm):
-    first_name = forms.CharField(
-        widget=forms.TextInput(
+    pictture = forms.ImageField(
+        widget=forms.FileInput(
             attrs={
-                'class': 'classe-a classe-b',
-                'placeholder': 'First name',
+                'class': 'form-control',
+                'accept': 'image/*',
             }
-        ),
-        label='Primeiro nome',
-        help_text='Informe o primeiro nome',
+        )
     )
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        self.fields['first_name'].required = True
     
     class Meta:
         model = Contact
@@ -27,6 +20,10 @@ class ContactForm(forms.ModelForm):
             'first_name',
             'last_name',
             'phone',
+            'email',
+            'description',
+            'category',
+            'picture',
         )
         
     def clean(self):
